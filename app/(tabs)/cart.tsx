@@ -1,17 +1,19 @@
-import React, { useMemo } from "react";
-import { View, StyleSheet, TouchableOpacity, Alert } from "react-native";
-import { Stack, useRouter } from "expo-router";
-import { Typography } from "@/ui/Typography";
-import { Button } from "@/ui/Button";
-import { COLORS } from "@/constants/colors";
-import { CustomScrollView } from "@/components/ui/Wrapper";
-import { useProductsCartStore } from "@/stores/cartProductsStore";
-import { CartItem } from "@/components/modules/cart/CartItem";
-import { TrashIcon } from "@/components/icons/Trash";
-import { ArrowRightIcon } from "@/components/icons/ArrowRight";
-import { TextField } from "@/components/ui/TextField";
-import { CartEmptyState } from "@/components/modules/cart/CartState";
-import { currencyFormat } from "@/lib/currencyFormat";
+import { Stack, useRouter } from 'expo-router';
+import React, { useCallback, useMemo } from 'react';
+import { View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+
+import { ArrowRightIcon } from '@/components/icons/ArrowRight';
+import { CartIcon } from '@/components/icons/Cart';
+import { TrashIcon } from '@/components/icons/Trash';
+import { CartItem } from '@/components/modules/cart/CartItem';
+import { EmptyState } from '@/components/ui/StateComponents';
+import { TextField } from '@/components/ui/TextField';
+import { CustomScrollView } from '@/components/ui/Wrapper';
+import { COLORS } from '@/constants/co';
+import { currencyFormat } from '@/lib/currencyFormat';
+import { useProductsCartStore } from '@/stores/cartProductsStore';
+import { Button } from '@/ui/Button';
+import { Typography } from '@/ui/Typography';
 
 const CartScreen = () => {
   const router = useRouter();
@@ -34,27 +36,26 @@ const CartScreen = () => {
 
   const handleClearCart = () => {
     Alert.alert(
-      "Clear Cart",
-      "Are you sure you want to remove all items from your cart?",
+      'Clear Cart',
+      'Are you sure you want to remove all items from your cart?',
       [
-        { text: "Cancel", style: "cancel" },
+        { text: 'Cancel', style: 'cancel' },
         {
-          text: "Clear",
-          style: "destructive",
+          text: 'Clear',
+          style: 'destructive',
           onPress: clearCart,
         },
-      ]
+      ],
     );
   };
 
-  const handleCheckout = () => {
-    // Navigate to checkout screen
-    // router.push("/checkout");
-  };
+  const handleCheckout = useCallback(() => {
+    console.log('Checkout');
+  }, []);
 
-  const handleContinueShopping = () => {
-    router.back();
-  };
+  const handleContinueShopping = useCallback(() => {
+    router.push('/');
+  }, [router]);
 
   // Get current cart count for header
   const cartItemCount = getTotalItems();
@@ -87,7 +88,13 @@ const CartScreen = () => {
 
       {/* Empty cart state */}
       {isEmpty ? (
-        <CartEmptyState handleContinueShopping={handleContinueShopping} />
+        <EmptyState
+          title="No Products in Cart"
+          message="Your cart is empty. Add some products to get started."
+          actionLabel="Continue Shopping"
+          onAction={handleContinueShopping}
+          icon={<CartIcon size={64} color={COLORS.black[300]} />}
+        />
       ) : (
         <>
           <CustomScrollView contentContainerStyle={styles.container}>
@@ -252,14 +259,14 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   summaryRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   totalRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   divider: {
     height: 1,
@@ -270,20 +277,20 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: COLORS.white,
     marginTop: 8,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   promoTitle: {
     flex: 1,
   },
   checkoutBar: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 16,
     backgroundColor: COLORS.white,
     // borderTopWidth: 1,
@@ -295,9 +302,9 @@ const styles = StyleSheet.create({
   },
   checkoutButton: {
     flex: 2,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     gap: 8,
   },
 });

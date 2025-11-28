@@ -1,9 +1,10 @@
-// components/ui/RatingStars.tsx
-import { COLORS } from "@/constants/colors";
-import { View, StyleSheet } from "react-native";
-import { Typography } from "./Typography";
+import { View, StyleSheet } from 'react-native';
 
-export type RatingSize = "sm" | "md" | "lg";
+import { COLORS } from '@/constants/co';
+
+import { Typography } from './Typography';
+
+export type RatingSize = 'sm' | 'md' | 'lg';
 
 interface RatingStarsProps {
   rating: number;
@@ -13,7 +14,7 @@ interface RatingStarsProps {
 
 export const RatingStars = ({
   rating,
-  size = "md",
+  size = 'md',
   showRatingText = true,
 }: RatingStarsProps) => {
   const filledStars = Math.floor(rating);
@@ -22,18 +23,18 @@ export const RatingStars = ({
   // Size configuration
   const sizeConfig = {
     sm: {
-      starVariant: "body3" as const,
-      textVariant: "body3" as const,
+      starVariant: 'body3' as const,
+      textVariant: 'body3' as const,
       gap: 4,
     },
     md: {
-      starVariant: "body2" as const,
-      textVariant: "body2" as const,
+      starVariant: 'body2' as const,
+      textVariant: 'body2' as const,
       gap: 8,
     },
     lg: {
-      starVariant: "body1" as const,
-      textVariant: "body1" as const,
+      starVariant: 'body1' as const,
+      textVariant: 'body1' as const,
       gap: 8,
     },
   };
@@ -43,9 +44,9 @@ export const RatingStars = ({
   return (
     <View style={[styles.ratingStars, { gap: config.gap }]}>
       <Typography variant={config.starVariant} color={COLORS.black[500]}>
-        {"★".repeat(filledStars)}
-        {halfStar ? "½" : ""}
-        {"☆".repeat(5 - filledStars - (halfStar ? 1 : 0))}
+        {'★'.repeat(filledStars)}
+        {halfStar ? '½' : ''}
+        {'☆'.repeat(5 - filledStars - (halfStar ? 1 : 0))}
       </Typography>
       {showRatingText && (
         <Typography
@@ -62,8 +63,8 @@ export const RatingStars = ({
 
 const styles = StyleSheet.create({
   ratingStars: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   ratingText: {
     // marginLeft is now handled by gap

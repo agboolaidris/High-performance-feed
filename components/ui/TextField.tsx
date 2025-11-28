@@ -1,17 +1,17 @@
-// components/ui/TextField.tsx  ← FINAL + PERFECT FOCUS STATE
-
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   TextInput,
   TextInputProps,
   StyleSheet,
   ViewStyle,
-} from "react-native";
-import { COLORS } from "@/constants/colors";
-import { Typography } from "@/ui/Typography";
+} from 'react-native';
 
-interface TextFieldProps extends Omit<TextInputProps, "style"> {
+import { COLORS } from '@/constants/co';
+
+import { Typography } from './Typography';
+
+interface TextFieldProps extends Omit<TextInputProps, 'style'> {
   label?: string;
   error?: string;
   leftIcon?: React.ReactNode;
@@ -26,7 +26,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   leftIcon,
   rightIcon,
   placeholder,
-  value = "",
+  value = '',
   onChangeText,
   containerStyle,
   secureTextEntry,
@@ -37,23 +37,22 @@ export const TextField: React.FC<TextFieldProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const hasValue = value.length > 0;
   const showError = !!error;
-  const isDisabled = !editable;
 
   const borderColor = showError
     ? COLORS.red // Error → red
     : isFocused
-    ? COLORS.black[900] // Focused → Primary/900
-    : COLORS.black[300]; // Resting → light gray
+      ? COLORS.black[900] // Focused → Primary/900
+      : COLORS.black[300]; // Resting → light gray
 
   // BACKGROUND
-  const backgroundColor = editable ? "transparent" : COLORS.black[100]; // Always filled (light gray)
+  const backgroundColor = editable ? 'transparent' : COLORS.black[100]; // Always filled (light gray)
 
   // LABEL COLOR
   const labelColor = showError
     ? COLORS.red
     : isFocused || hasValue
-    ? COLORS.black[900]
-    : COLORS.black[500];
+      ? COLORS.black[900]
+      : COLORS.black[500];
 
   return (
     <View style={[styles.container, containerStyle]}>
@@ -111,7 +110,7 @@ export const TextField: React.FC<TextFieldProps> = ({
 const styles = StyleSheet.create({
   container: {
     gap: 4,
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
   },
 
   label: {
@@ -120,9 +119,9 @@ const styles = StyleSheet.create({
 
   // EXACT FIGMA MATCH — ALL STATES
   inputWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     height: 52,
     paddingHorizontal: 20,
     paddingVertical: 14,
@@ -135,7 +134,7 @@ const styles = StyleSheet.create({
 
   input: {
     flex: 1,
-    fontFamily: "GeneralSans-Regular",
+    fontFamily: 'GeneralSans-Regular',
     fontSize: 16,
     color: COLORS.black[900],
     padding: 0,

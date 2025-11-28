@@ -1,7 +1,8 @@
-import React from "react";
-import Svg, { Path } from "react-native-svg";
-import { IconProps } from "@/types";
-import { COLORS } from "@/constants/colors";
+import React from 'react';
+import Svg, { Path } from 'react-native-svg';
+
+import { COLORS } from '@/constants/co';
+import { IconProps } from '@/types';
 
 export const MicrophoneIcon = ({
   size = 20,
@@ -22,4 +23,4 @@ export const MicrophoneIcon = ({
   </Svg>
 );
 
-MicrophoneIcon.displayName = "MicrophoneIcon";
+MicrophoneIcon.displayName = 'MicrophoneIcon';

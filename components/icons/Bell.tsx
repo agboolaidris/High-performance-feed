@@ -1,8 +1,9 @@
 // components/icons/Bell.tsx
-import React from "react";
-import Svg, { Path } from "react-native-svg";
-import { IconProps } from "@/types";
-import { COLORS } from "@/constants/colors";
+import React from 'react';
+import Svg, { Path } from 'react-native-svg';
+
+import { COLORS } from '@/constants/co';
+import { IconProps } from '@/types';
 
 export const BellIcon = ({
   size = 24,
@@ -17,4 +18,4 @@ export const BellIcon = ({
   </Svg>
 );
 
-BellIcon.displayName = "BellIcon";
+BellIcon.displayName = 'BellIcon';

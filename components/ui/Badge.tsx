@@ -1,14 +1,14 @@
-// components/ui/Badge.tsx
-import React from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
-import { Typography } from "@/ui/Typography";
-import { COLORS } from "@/constants/colors";
+import React from 'react';
+import { View, StyleSheet, ViewStyle } from 'react-native';
+
+import { COLORS } from '@/constants/co';
+import { Typography } from '@/ui/Typography';
 
 export interface BadgeProps {
   count: number;
   maxCount?: number;
-  size?: "sm" | "md" | "lg";
-  position?: "top-right" | "top-left" | "bottom-right" | "bottom-left";
+  size?: 'sm' | 'md' | 'lg';
+  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
   showZero?: boolean;
   style?: ViewStyle;
   color?: string;
@@ -18,8 +18,8 @@ export interface BadgeProps {
 export const Badge: React.FC<BadgeProps> = ({
   count,
   maxCount = 99,
-  size = "md",
-  position = "top-right",
+  size = 'md',
+  position = 'top-right',
   showZero = false,
   style,
   color = COLORS.red,
@@ -58,10 +58,10 @@ export const Badge: React.FC<BadgeProps> = ({
 
   // Position configuration
   const positionConfig = {
-    "top-right": { top: -4, right: -4 },
-    "top-left": { top: -4, left: -4 },
-    "bottom-right": { bottom: -4, right: -4 },
-    "bottom-left": { bottom: -4, left: -4 },
+    'top-right': { top: -4, right: -4 },
+    'top-left': { top: -4, left: -4 },
+    'bottom-right': { bottom: -4, right: -4 },
+    'bottom-left': { bottom: -4, left: -4 },
   };
 
   const positionStyle = positionConfig[position];
@@ -96,10 +96,10 @@ export const Badge: React.FC<BadgeProps> = ({
 
 const styles = StyleSheet.create({
   badge: {
-    position: "absolute",
+    position: 'absolute',
     borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 4,
     borderWidth: 2,
     borderColor: COLORS.white,

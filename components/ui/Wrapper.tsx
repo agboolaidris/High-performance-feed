@@ -1,7 +1,7 @@
-import { COLORS } from "@/constants/colors";
-import { View, ViewProps, ScrollViewProps, ScrollView } from "react-native";
+import { View, ViewProps, ScrollViewProps, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { SafeAreaView } from "react-native-safe-area-context";
+import { COLORS } from '@/constants/co';
 
 export const Wrapper = ({
   style,

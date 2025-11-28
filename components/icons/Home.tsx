@@ -1,8 +1,9 @@
 // components/icons/Home.tsx
-import { COLORS } from "@/constants/colors";
-import { IconProps } from "@/types";
-import React from "react";
-import Svg, { Path } from "react-native-svg";
+import React from 'react';
+import Svg, { Path } from 'react-native-svg';
+
+import { COLORS } from '@/constants/co';
+import { IconProps } from '@/types';
 
 export const HomeIcon = ({
   size = 24,
@@ -23,4 +24,4 @@ export const HomeIcon = ({
   </Svg>
 );
 
-HomeIcon.displayName = "HomeIcon";
+HomeIcon.displayName = 'HomeIcon';

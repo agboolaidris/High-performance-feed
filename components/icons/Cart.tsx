@@ -1,8 +1,9 @@
 // components/icons/Cart.tsx
-import React from "react";
-import Svg, { Path } from "react-native-svg";
-import { IconProps } from "@/types";
-import { COLORS } from "@/constants/colors";
+import React from 'react';
+import Svg, { Path } from 'react-native-svg';
+
+import { COLORS } from '@/constants/co';
+import { IconProps } from '@/types';
 
 export const CartIcon = ({
   size = 24,
@@ -23,4 +24,4 @@ export const CartIcon = ({
   </Svg>
 );
 
-CartIcon.displayName = "CartIcon";
+CartIcon.displayName = 'CartIcon';

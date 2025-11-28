@@ -1,22 +1,22 @@
-// components/typography/Text.tsx
-import React from "react";
+import React from 'react';
 import {
   Text as RNText,
   TextProps as RNTextProps,
   StyleSheet,
-} from "react-native";
-import { COLORS } from "@/constants/colors";
+} from 'react-native';
+
+import { COLORS } from '@/constants/co';
 
 // All your text variants
 export type TextVariant =
-  | "header2"
-  | "header3"
-  | "header4"
-  | "body1"
-  | "body2"
-  | "body3";
+  | 'header2'
+  | 'header3'
+  | 'header4'
+  | 'body1'
+  | 'body2'
+  | 'body3';
 
-type FontWeight = "regular" | "medium" | "semibold" | "bold";
+type FontWeight = 'regular' | 'medium' | 'semibold' | 'bold';
 
 interface TextProps extends RNTextProps {
   children: React.ReactNode;
@@ -27,21 +27,21 @@ interface TextProps extends RNTextProps {
 
 const getFontFamily = (weight: FontWeight): string => {
   switch (weight) {
-    case "regular":
-      return "GeneralSans-Regular";
-    case "medium":
-      return "GeneralSans-Medium";
-    case "semibold":
-      return "GeneralSans-Semibold";
-    case "bold":
-      return "GeneralSans-Bold";
+    case 'regular':
+      return 'GeneralSans-Regular';
+    case 'medium':
+      return 'GeneralSans-Medium';
+    case 'semibold':
+      return 'GeneralSans-Semibold';
+    case 'bold':
+      return 'GeneralSans-Bold';
     default:
-      return "GeneralSans-Regular";
+      return 'GeneralSans-Regular';
   }
 };
 
 export const Typography: React.FC<TextProps> = ({
-  variant = "body1",
+  variant = 'body1',
   color,
   font,
   style,
@@ -49,9 +49,9 @@ export const Typography: React.FC<TextProps> = ({
   ...props
 }) => {
   // Determine default font weight per variant
-  const defaultWeight: FontWeight = variant.startsWith("header")
-    ? "semibold"
-    : "regular";
+  const defaultWeight: FontWeight = variant.startsWith('header')
+    ? 'semibold'
+    : 'regular';
 
   const finalWeight = font || defaultWeight;
 

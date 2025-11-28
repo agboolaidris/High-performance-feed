@@ -1,22 +1,21 @@
-// components/ui/Button.tsx  ← Final version: opacity on press (like TouchableOpacity)
-
-import React from "react";
+import React from 'react';
 import {
-  Pressable,
   View,
   ActivityIndicator,
   PressableStateCallbackType,
   StyleSheet,
   ViewStyle,
   PressableProps,
-} from "react-native";
-import { COLORS } from "@/constants/colors";
-import { Typography } from "@/ui/Typography";
-import { AnimatedPressable } from "./AnimatedPressable";
+} from 'react-native';
 
-export type ButtonVariant = "primary" | "outline" | "ghost";
+import { COLORS } from '@/constants/co';
+import { Typography } from '@/ui/Typography';
 
-interface ButtonProps extends Omit<PressableProps, "style"> {
+import { AnimatedPressable } from './AnimatedPressable';
+
+export type ButtonVariant = 'primary' | 'outline' | 'ghost';
+
+interface ButtonProps extends Omit<PressableProps, 'style'> {
   children: React.ReactNode;
   variant?: ButtonVariant;
   loading?: boolean;
@@ -27,7 +26,7 @@ interface ButtonProps extends Omit<PressableProps, "style"> {
 
 export const Button: React.FC<ButtonProps> = ({
   children,
-  variant = "primary",
+  variant = 'primary',
   loading = false,
   disabled = false,
   textColor,
@@ -38,12 +37,12 @@ export const Button: React.FC<ButtonProps> = ({
 
   const getDefaultTextColor = () => {
     if (isDisabled) return COLORS.white;
-    return variant === "primary" ? COLORS.white : COLORS.black[900];
+    return variant === 'primary' ? COLORS.white : COLORS.black[900];
   };
 
   const renderChildren = () => {
     return React.Children.toArray(children).map((child, index) => {
-      if (typeof child === "string" || typeof child === "number") {
+      if (typeof child === 'string' || typeof child === 'number') {
         return (
           <Typography
             key={index}
@@ -72,7 +71,7 @@ export const Button: React.FC<ButtonProps> = ({
         // Only change: opacity on press
         const opacity = state.pressed ? 0.6 : 1;
 
-        if (typeof style === "function") {
+        if (typeof style === 'function') {
           return style(state);
         }
 
@@ -80,7 +79,7 @@ export const Button: React.FC<ButtonProps> = ({
       }}
       android_ripple={{
         color:
-          variant === "primary" ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.15)",
+          variant === 'primary' ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.15)',
       }}
       {...rest}
     >
@@ -104,23 +103,23 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     height: 54,
     borderRadius: 10,
-    alignSelf: "stretch",
-    justifyContent: "center",
+    alignSelf: 'stretch',
+    justifyContent: 'center',
   },
   content: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: 10,
   },
 
   primaryButton: { backgroundColor: COLORS.black[900] },
   outlineButton: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: COLORS.black[200],
   },
-  ghostButton: { backgroundColor: "transparent" },
+  ghostButton: { backgroundColor: 'transparent' },
 
   disabled: {
     backgroundColor: COLORS.black[200],

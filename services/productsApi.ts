@@ -19,7 +19,7 @@ export const productsApi = {
       path = `/products/category/${filters.category}`;
     }
 
-    console.log({ path });
+    ({ path });
     if (filters.limit) params.limit = filters.limit.toString();
     if (filters.skip) params.skip = filters.skip.toString();
     if (filters.q) params.q = filters.q;

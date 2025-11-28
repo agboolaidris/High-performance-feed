@@ -1,11 +1,12 @@
 // components/icons/Trash.tsx
-import { IconProps } from "@/types";
-import React from "react";
-import Svg, { Path } from "react-native-svg";
+import React from 'react';
+import Svg, { Path } from 'react-native-svg';
+
+import { IconProps } from '@/types';
 
 export const TrashIcon: React.FC<IconProps> = ({
   size = 24,
-  color = "#000",
+  color = '#000',
 }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <Path

@@ -1,9 +1,10 @@
-import React, { useMemo, memo, useCallback } from "react";
-import { CustomFlashList } from "@/components/ui/CustomFlashList";
-import { Button } from "@/components/ui/Button";
-import { Typography } from "@/components/ui/Typography";
-import { View } from "react-native";
-import { useCategories } from "@/hooks/useProducts";
+import React, { useMemo, memo, useCallback } from 'react';
+import { View } from 'react-native';
+
+import { useCategories } from '@/hooks/useProducts';
+import { Button } from '@/ui/Button';
+import { CustomFlashList } from '@/ui/CustomFlashList';
+import { Typography } from '@/ui/Typography';
 
 interface CategoryItemProps {
   item: any;
@@ -23,7 +24,7 @@ const CategoryItem = memo(
       }}
     >
       <Button
-        variant={isSelected ? "primary" : "outline"}
+        variant={isSelected ? 'primary' : 'outline'}
         style={{
           paddingVertical: 8,
           paddingHorizontal: 16,
@@ -34,15 +35,15 @@ const CategoryItem = memo(
       >
         <Typography
           variant="body3"
-          font={isSelected ? "semibold" : "medium"}
-          color={isSelected ? "white" : undefined}
+          font={isSelected ? 'semibold' : 'medium'}
+          color={isSelected ? 'white' : undefined}
           numberOfLines={1}
         >
           {item.name}
         </Typography>
       </Button>
     </View>
-  )
+  ),
 );
 
 interface ProductCategoriesListProps {
@@ -53,7 +54,7 @@ interface ProductCategoriesListProps {
 
 export const ProductCategoriesList = ({
   onPress,
-  selectedCategory = "All",
+  selectedCategory = 'All',
   showAllCategory = true,
 }: ProductCategoriesListProps) => {
   // ALWAYS call hooks at the top level - no conditions!
@@ -76,7 +77,7 @@ export const ProductCategoriesList = ({
     }
 
     const baseCategories = showAllCategory
-      ? [{ id: "all", name: "All" }, ...productCategoriesData]
+      ? [{ id: 'all', name: 'All' }, ...productCategoriesData]
       : productCategoriesData;
 
     return baseCategories;
@@ -92,7 +93,7 @@ export const ProductCategoriesList = ({
         onPress={onPress}
       />
     ),
-    [categories.length, selectedCategory, onPress]
+    [categories.length, selectedCategory, onPress],
   );
 
   // Don't render the list if no categories to show
@@ -116,3 +117,5 @@ export const ProductCategoriesList = ({
     />
   );
 };
+
+CategoryItem.displayName = 'CategoryItem';

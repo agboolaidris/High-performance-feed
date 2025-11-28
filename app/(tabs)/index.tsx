@@ -1,31 +1,33 @@
-import React, { useMemo, useCallback, useState } from "react";
-import { ActivityIndicator, View, StyleSheet } from "react-native";
-import { Button } from "@/components/ui/Button";
-import { TextField } from "@/components/ui/TextField";
-import { useRouter } from "expo-router";
-import { FilterIcon } from "@/components/icons/Filter";
-import { COLORS } from "@/constants/colors";
-import { CustomFlashList } from "@/ui/CustomFlashList";
-import { ProductCategoriesList } from "@/components/modules/product/ProductCategoriesList";
-import { ProductCard } from "@/components/modules/product/ProductCard";
-import { useInfiniteProducts } from "@/hooks/useProducts";
-import { CustomRefreshControl } from "@/ui/CustomRefreshControl";
-import { Typography } from "@/ui/Typography";
-import { ProductsParams } from "@/types/product";
+import { useRouter } from 'expo-router';
+import React, { useMemo, useCallback, useState } from 'react';
+import { ActivityIndicator, View, StyleSheet } from 'react-native';
+
+import { FilterIcon } from '@/components/icons/Filter';
+import { MicrophoneIcon } from '@/components/icons/Microphone';
+import { PackageIcon } from '@/components/icons/Pacakge';
+import { SearchIcon } from '@/components/icons/Search';
+import { ProductCard } from '@/components/modules/product/ProductCard';
+import { ProductCategoriesList } from '@/components/modules/product/ProductCategoriesList';
+import { Button } from '@/components/ui/Button';
 import {
-  ProductEmptyState,
-  ProductErrorState,
-  ProductLoadingState,
-} from "@/components/modules/product/ProductState";
-import { MicrophoneIcon } from "@/components/icons/Microphone";
-import { SearchIcon } from "@/components/icons/Search";
+  EmptyState,
+  ErrorState,
+  LoadingState,
+} from '@/components/ui/StateComponents';
+import { TextField } from '@/components/ui/TextField';
+import { COLORS } from '@/constants/co';
+import { useInfiniteProducts } from '@/hooks/useProducts';
+import { ProductsParams } from '@/types/product';
+import { CustomFlashList } from '@/ui/CustomFlashList';
+import { CustomRefreshControl } from '@/ui/CustomRefreshControl';
+import { Typography } from '@/ui/Typography';
 
 const Screen = () => {
   const { push } = useRouter();
   const [params, setParams] = useState<ProductsParams>({
-    sortBy: "rating",
-    sortOrder: "desc",
-    category: "all",
+    sortBy: 'rating',
+    sortOrder: 'desc',
+    category: 'all',
   });
 
   const {
@@ -42,7 +44,7 @@ const Screen = () => {
   // Memoized data transformation
   const productions = useMemo(
     () => data?.pages.flatMap((page) => page.products) || [],
-    [data]
+    [data],
   );
 
   // Memoized callbacks
@@ -50,7 +52,7 @@ const Screen = () => {
     (productId: number) => {
       push(`/products/${productId}`);
     },
-    [push]
+    [push],
   );
 
   const handleEndReached = useCallback(() => {
@@ -66,7 +68,7 @@ const Screen = () => {
   const handleCategoryPress = useCallback((category: string) => {
     setParams((prev) => ({
       ...prev,
-      category: category.toLowerCase() === "all" ? undefined : category,
+      category: category.toLowerCase() === 'all' ? undefined : category,
     }));
   }, []);
 
@@ -111,11 +113,36 @@ const Screen = () => {
       </View>
 
       {!isLoading && error ? (
-        <ProductErrorState refresh={handleRefresh} />
+        <ErrorState
+          title="Failed to Load Products"
+          message="We couldn't load the product catalog. Please check your connection and try again."
+          actionLabel="Try Again"
+          onAction={handleRefresh}
+          icon={<PackageIcon size={64} color={COLORS.black[300]} />}
+        />
       ) : null}
 
-      {isLoading ? <ProductLoadingState /> : null}
-      {!isLoading && productions.length === 0 && <ProductEmptyState />}
+      {isLoading ? (
+        <LoadingState
+          title="Loading Products..."
+          message="Please wait while we fetch the latest products"
+          size="large"
+        />
+      ) : null}
+      {!isLoading && productions.length === 0 && (
+        <EmptyState
+          title="No Products Available"
+          message="There are currently no products in this category. Check back later for new arrivals."
+          actionLabel="Browse All Products"
+          onAction={() =>
+            setParams({
+              ...params,
+              category: 'all',
+            })
+          }
+          icon={<PackageIcon size={64} color={COLORS.black[300]} />}
+        />
+      )}
       {!isLoading && productions.length > 0 ? (
         <CustomFlashList
           refreshControl={
@@ -124,7 +151,15 @@ const Screen = () => {
               onRefresh={handleRefresh}
             />
           }
-          ListEmptyComponent={() => <ProductEmptyState />}
+          ListEmptyComponent={
+            <EmptyState
+              title="No Products Available"
+              message="There are currently no products in this category. Check back later for new arrivals."
+              actionLabel="Browse All Products"
+              onAction={() => console.log('Navigate to all products')}
+              icon={<PackageIcon size={64} color={COLORS.black[300]} />}
+            />
+          }
           data={productions}
           renderItem={({ item, index }) => (
             <View
@@ -133,7 +168,7 @@ const Screen = () => {
                 {
                   paddingLeft: index % 2 === 0 ? 16 : 8,
                   paddingRight: index % 2 === 0 ? 8 : 16,
-                  width: "100%",
+                  width: '100%',
                 },
               ]}
             >
@@ -164,7 +199,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   searchContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 10,
     paddingHorizontal: 16,
   },
@@ -183,14 +218,14 @@ const styles = StyleSheet.create({
 
   productItem: {
     paddingVertical: 8,
-    width: "100%",
+    width: '100%',
   },
 
   // Footer
   footerContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 16,
     gap: 12,
   },

@@ -1,6 +1,4 @@
-// components/ui/AnimatedPressable.tsx
-
-import React from "react";
+import React from 'react';
 import {
   Pressable,
   PressableProps,
@@ -10,11 +8,11 @@ import {
   Animated,
   GestureResponderEvent,
   StyleSheet,
-} from "react-native";
+} from 'react-native';
 
 type AnimatedStyle = StyleProp<ViewStyle>;
 
-interface AnimatedPressableProps extends Omit<PressableProps, "style"> {
+interface AnimatedPressableProps extends Omit<PressableProps, 'style'> {
   children: React.ReactNode;
   scale?: number; // e.g. 0.95
   opacity?: number; // e.g. 0.7
@@ -67,7 +65,7 @@ export const AnimatedPressable: React.FC<AnimatedPressableProps> = ({
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       style={(state) => {
-        const baseStyle = typeof style === "function" ? style(state) : style;
+        const baseStyle = typeof style === 'function' ? style(state) : style;
         return [baseStyle, state.pressed && styles.pressedFallback];
       }}
       {...rest}

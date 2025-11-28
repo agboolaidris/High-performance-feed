@@ -1,6 +1,6 @@
-import React from "react";
-import { FlashList, FlashListProps } from "@shopify/flash-list";
-import { COLORS } from "@/constants/colors";
+import { FlashList, FlashListProps } from '@shopify/flash-list';
+
+import { COLORS } from '@/constants/co';
 
 interface CustomFlashListProps<T> extends FlashListProps<T> {}
 

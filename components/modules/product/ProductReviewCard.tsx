@@ -1,8 +1,9 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import { Typography } from "@/ui/Typography";
-import { COLORS } from "@/constants/colors";
-import { ProductReview } from "@/types/product";
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+
+import { COLORS } from '@/constants/co';
+import { ProductReview } from '@/types/product';
+import { Typography } from '@/ui/Typography';
 
 export const ProductReviewCard = ({ data }: { data: ProductReview }) => {
   return (
@@ -17,8 +18,8 @@ export const ProductReviewCard = ({ data }: { data: ProductReview }) => {
       </View>
       <View style={styles.rating}>
         <Typography variant="body3" color={COLORS.black[500]}>
-          {"★".repeat(data.rating)}
-          {"☆".repeat(5 - data.rating)}
+          {'★'.repeat(data.rating)}
+          {'☆'.repeat(5 - data.rating)}
         </Typography>
       </View>
       <Typography
@@ -43,12 +44,12 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   rating: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   comment: {
     lineHeight: 18,
