@@ -16,7 +16,7 @@ _Detailed product view with image gallery and add to cart_
 
 ### Shopping Cart
 
-![Shopping Cart](https://via.placeholder.com/300x600/B8E986/FFFFFF?text=Shopping+Cart)
+![Shopping Cart](https://github.com/agboolaidris/High-performance-feed/blob/main/screenshots/cart-list.png?raw=true)
 _Manage cart items with quantity controls_
 
 ### Saved Items
