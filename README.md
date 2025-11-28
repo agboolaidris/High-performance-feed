@@ -2,6 +2,33 @@
 
 A modern e-commerce mobile application built with **React Native** and **Expo** as part of a technical assignment for a recruiting process. This app demonstrates product browsing, cart management, and saved items functionality.
 
+## 📸 App Screenshots
+
+### Home & Product Catalog
+
+![Home Screen](https://github.com/agboolaidris/High-performance-feed/blob/main/screenshots/product-list.png?raw=true)
+_Browse products with infinite scrolling and search_
+
+### Product Details
+
+![Product Details](https://github.com/agboolaidris/High-performance-feed/blob/main/screenshots/product-detail.png?raw=true)
+_Detailed product view with image gallery and add to cart_
+
+### Shopping Cart
+
+![Shopping Cart](https://via.placeholder.com/300x600/B8E986/FFFFFF?text=Shopping+Cart)
+_Manage cart items with quantity controls_
+
+### Saved Items
+
+![Saved Items](https://github.com/agboolaidris/High-performance-feed/blob/main/screenshots/liked-products.png?raw=true)
+_View and manage your favorite products_
+
+### Search Functionality
+
+![Search](https://via.placeholder.com/300x600/9013FE/FFFFFF?text=Search+Products)
+_Real-time search with category filtering_
+
 ## 📱 Assignment Overview
 
 This project was developed to showcase skills in:
@@ -66,7 +93,6 @@ This project was developed to showcase skills in:
 
    # iOS
    yarn ios
-
    ```
 
 ## 🎨 Design System
