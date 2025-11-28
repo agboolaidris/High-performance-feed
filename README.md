@@ -26,7 +26,7 @@ _View and manage your favorite products_
 
 ### Search Functionality
 
-![Search](https://via.placeholder.com/300x600/9013FE/FFFFFF?text=Search+Products)
+![Search](https://github.com/agboolaidris/High-performance-feed/blob/main/screenshots/search-products.png?raw=true)
 _Real-time search with category filtering_
 
 ## 📱 Assignment Overview
@@ -85,7 +85,17 @@ This project was developed to showcase skills in:
    yarn install
    ```
 
-2. **Run on specific platforms**
+2. **Environment Setup**
+
+   ```bash
+   # Copy the environment example file
+   cp env.example .env.local
+
+   # Configure your environment variables in .env.local
+   # The app will use the provided API endpoints by default
+   ```
+
+3. **Run on specific platforms**
 
    ```bash
    # Android
