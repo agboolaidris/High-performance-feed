@@ -1,12 +1,6 @@
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState, useEffect, useMemo } from "react";
-import {
-  View,
-  ScrollView,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { CartIcon } from "@/components/icons/Cart";
@@ -22,7 +16,7 @@ import {
 } from "@/components/ui/StateComponents";
 import { COLORS } from "@/constants/color";
 import { useProduct } from "@/hooks/useProducts";
-import { HeartIcon } from "@/icons/Heart";
+import { HeartFilledIcon, HeartIcon } from "@/icons/Heart";
 import { currencyFormat } from "@/lib/currencyFormat";
 import { useProductsCartStore } from "@/stores/cartProductsStore";
 import { useSavedProductstore } from "@/stores/savedProductsStore";
@@ -218,7 +212,11 @@ const ProductDetail = () => {
               style={styles.favouriteButton}
               onPress={toggleFavourite}
             >
-              <HeartIcon filled={isFavorite(productData.id)} size={20} />
+              {isFavorite(productData.id) ? (
+                <HeartFilledIcon size={20} />
+              ) : (
+                <HeartIcon size={20} />
+              )}
             </TouchableOpacity>
           </View>
 
@@ -583,7 +581,7 @@ const styles = StyleSheet.create({
     textDecorationLine: "line-through",
   },
   discountBadge: {
-    backgroundColor: COLORS.red,
+    backgroundColor: COLORS.orange,
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 4,

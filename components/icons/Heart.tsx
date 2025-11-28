@@ -1,26 +1,33 @@
-import { View } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
+import { View } from "react-native";
+import Svg, { Path } from "react-native-svg";
 
-import { COLORS } from '@/constants/color';
-import { IconProps } from '@/types';
+import { COLORS } from "@/constants/color";
+import { IconProps } from "@/types";
 
-import { Typography } from '../ui/Typography';
+import { Typography } from "../ui/Typography";
 
-export const HeartIcon = ({
-  filled,
+export const HeartFilledIcon = ({
   size = 24,
-}: {
-  filled: boolean;
-  size?: number;
-}) => (
-  <View style={{ width: size, height: size }}>
-    <Typography variant="body1" color={filled ? COLORS.red : COLORS.black[400]}>
-      {filled ? '♥' : '♡'}
-    </Typography>
-  </View>
+  color = COLORS.red, // Default to red for filled heart
+  ...props
+}: IconProps) => (
+  <Svg
+    width={size}
+    height={size * (15 / 17)}
+    viewBox="0 0 17 15"
+    fill="none"
+    {...props}
+  >
+    <Path
+      d="M11.6719 0C10.2593 0 9.00562 0.557578 8.15625 1.51594C7.30688 0.557578 6.0532 0 4.64062 0C3.41031 0.00148858 2.23082 0.490888 1.36085 1.36085C0.490888 2.23082 0.00148858 3.41031 0 4.64062C0 9.72703 7.43977 13.7911 7.75617 13.962C7.87913 14.0282 8.0166 14.0628 8.15625 14.0628C8.2959 14.0628 8.43337 14.0282 8.55633 13.962C8.87273 13.7911 16.3125 9.72703 16.3125 4.64062C16.311 3.41031 15.8216 2.23082 14.9516 1.36085C14.0817 0.490888 12.9022 0.00148858 11.6719 0Z"
+      fill={color}
+    />
+  </Svg>
 );
 
-export const Heart2Icon = ({
+HeartFilledIcon.displayName = "HeartFilledIcon";
+
+export const HeartIcon = ({
   size = 24,
   color = COLORS.black[900],
   ...props
@@ -39,4 +46,4 @@ export const Heart2Icon = ({
   </Svg>
 );
 
-HeartIcon.displayName = 'HeartIcon';
+HeartIcon.displayName = "HeartIcon";

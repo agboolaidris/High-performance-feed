@@ -57,6 +57,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     }
   };
 
+  // Determine discount badge color based on stock status
+  const getDiscountBadgeColor = () => {
+    if (product.stock === 0) {
+      return COLORS.black[400]; // Gray for out of stock
+    }
+    return COLORS.orange; // Normal red for in stock
+  };
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -81,7 +89,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Discount Badge */}
         {product.discountPercentage > 0 && (
-          <View style={styles.discountBadge}>
+          <View
+            style={[
+              styles.discountBadge,
+              { backgroundColor: getDiscountBadgeColor() },
+            ]}
+          >
             <Typography variant="body3" color={COLORS.white} font="semibold">
               -{product.discountPercentage}%
             </Typography>
@@ -137,7 +150,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               </Typography>
               <Typography
                 variant="body3"
-                color={COLORS.black[400]}
+                color={
+                  product.stock === 0 ? COLORS.black[400] : COLORS.black[600]
+                }
                 font="medium"
                 style={styles.originalPrice}
               >
@@ -145,7 +160,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               </Typography>
             </>
           ) : (
-            <Typography variant="body2" color={COLORS.black[800]} font="bold">
+            <Typography
+              variant="body2"
+              color={
+                product.stock === 0 ? COLORS.black[400] : COLORS.black[800]
+              }
+              font="bold"
+            >
               ${product.price.toFixed(2)}
             </Typography>
           )}
@@ -183,7 +204,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 8,
     left: 8,
-    backgroundColor: COLORS.red,
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 4,
@@ -206,7 +226,6 @@ const styles = StyleSheet.create({
   titleText: {
     lineHeight: 14,
   },
-
   priceContainer: {
     flexDirection: "row",
     alignItems: "center",

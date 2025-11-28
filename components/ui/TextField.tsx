@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   TextInput,
   TextInputProps,
   StyleSheet,
   ViewStyle,
-} from 'react-native';
+} from "react-native";
 
-import { COLORS } from '@/constants/color';
+import { COLORS } from "@/constants/color";
 
-import { Typography } from './Typography';
+import { Typography } from "./Typography";
 
-interface TextFieldProps extends Omit<TextInputProps, 'style'> {
+interface TextFieldProps extends Omit<TextInputProps, "style"> {
   label?: string;
   error?: string;
   leftIcon?: React.ReactNode;
@@ -26,7 +26,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   leftIcon,
   rightIcon,
   placeholder,
-  value = '',
+  value,
   onChangeText,
   containerStyle,
   secureTextEntry,
@@ -35,7 +35,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   ...inputProps
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-  const hasValue = value.length > 0;
+  const hasValue = (value?.length ?? 0) > 0;
   const showError = !!error;
 
   const borderColor = showError
@@ -45,7 +45,7 @@ export const TextField: React.FC<TextFieldProps> = ({
       : COLORS.black[300]; // Resting → light gray
 
   // BACKGROUND
-  const backgroundColor = editable ? 'transparent' : COLORS.black[100]; // Always filled (light gray)
+  const backgroundColor = editable ? "transparent" : COLORS.black[100]; // Always filled (light gray)
 
   // LABEL COLOR
   const labelColor = showError
@@ -110,7 +110,7 @@ export const TextField: React.FC<TextFieldProps> = ({
 const styles = StyleSheet.create({
   container: {
     gap: 4,
-    alignSelf: 'stretch',
+    alignSelf: "stretch",
   },
 
   label: {
@@ -119,9 +119,9 @@ const styles = StyleSheet.create({
 
   // EXACT FIGMA MATCH — ALL STATES
   inputWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     height: 52,
     paddingHorizontal: 20,
     paddingVertical: 14,
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
 
   input: {
     flex: 1,
-    fontFamily: 'GeneralSans-Regular',
+    fontFamily: "GeneralSans-Regular",
     fontSize: 16,
     color: COLORS.black[900],
     padding: 0,
