@@ -146,6 +146,6 @@ class ApiClient {
 
 // Create API client instance
 export const apiClient = new ApiClient({
-  baseURL: "https://dummyjson.com",
+  baseURL: process.env.EXPO_PUBLIC_API_URL!,
   timeout: 15000,
 });

@@ -66,18 +66,4 @@ export const productsApi = {
   getCategories: async (): Promise<ProductCategory[]> => {
     return apiClient.get<ProductCategory[]>("/products/categories");
   },
-
-  //   // Get products by category
-  //   getProductsByCategory: async (
-  //     category: string
-  //   ): Promise<ProductsResponse> => {
-  //     return apiClient.get<ProductsResponse>(`/products/category/${category}`);
-  //   },
-
-  //   // Search products
-  //   searchProducts: async (query: string): Promise<ProductsResponse> => {
-  //     return apiClient.get<ProductsResponse>(
-  //       `/products/search?q=${encodeURIComponent(query)}`
-  //     );
-  //   },
 };
