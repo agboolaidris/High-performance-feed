@@ -1,7 +1,7 @@
 import React from 'react';
 import { RefreshControl, RefreshControlProps } from 'react-native';
 
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 
 interface CustomRefreshControlProps extends RefreshControlProps {}
 

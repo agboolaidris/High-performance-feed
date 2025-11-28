@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { Typography } from '@/ui/Typography';
 
 export interface BadgeProps {

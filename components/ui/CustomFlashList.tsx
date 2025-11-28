@@ -1,6 +1,6 @@
 import { FlashList, FlashListProps } from '@shopify/flash-list';
 
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 
 interface CustomFlashListProps<T> extends FlashListProps<T> {}
 

@@ -20,7 +20,7 @@ import {
   ErrorState,
   LoadingState,
 } from '@/components/ui/StateComponents';
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { useProduct } from '@/hooks/useProducts';
 import { HeartIcon } from '@/icons/Heart';
 import { currencyFormat } from '@/lib/currencyFormat';

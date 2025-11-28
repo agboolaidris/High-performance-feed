@@ -5,7 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
 import { CustomHeader } from '@/components/ui/CustomeHeader';
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { queryClient } from '@/lib/queryClient';
 import 'react-native-reanimated';
 

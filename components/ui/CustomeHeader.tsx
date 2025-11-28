@@ -2,7 +2,7 @@ import { Header as RHeader } from '@react-navigation/elements';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { Platform, StatusBar } from 'react-native';
 
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { ArrowLeftIcon } from '@/icons/ArrowLeft';
 
 import { AnimatedPressable } from './AnimatedPressable';

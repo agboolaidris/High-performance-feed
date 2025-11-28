@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
 import { TrashIcon } from '@/components/icons/Trash';
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { useProductsCartStore } from '@/stores/cartProductsStore';
 import { Product } from '@/types/product';
 import { Typography } from '@/ui/Typography';

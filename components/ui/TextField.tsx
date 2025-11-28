@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 
 import { Typography } from './Typography';
 

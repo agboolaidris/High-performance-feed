@@ -8,7 +8,7 @@ import {
   PressableProps,
 } from 'react-native';
 
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { Typography } from '@/ui/Typography';
 
 import { AnimatedPressable } from './AnimatedPressable';

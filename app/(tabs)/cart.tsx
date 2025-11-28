@@ -9,7 +9,7 @@ import { CartItem } from '@/components/modules/cart/CartItem';
 import { EmptyState } from '@/components/ui/StateComponents';
 import { TextField } from '@/components/ui/TextField';
 import { CustomScrollView } from '@/components/ui/Wrapper';
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { currencyFormat } from '@/lib/currencyFormat';
 import { useProductsCartStore } from '@/stores/cartProductsStore';
 import { Button } from '@/ui/Button';

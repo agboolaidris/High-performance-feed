@@ -1,7 +1,7 @@
 import { View, ViewProps, ScrollViewProps, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 
 export const Wrapper = ({
   style,

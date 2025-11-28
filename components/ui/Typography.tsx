@@ -5,7 +5,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 
 // All your text variants
 export type TextVariant =

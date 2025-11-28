@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { ProductReview } from '@/types/product';
 import { Typography } from '@/ui/Typography';
 

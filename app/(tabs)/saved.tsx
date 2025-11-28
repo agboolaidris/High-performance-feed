@@ -6,7 +6,7 @@ import { SearchIcon } from '@/components/icons/Search';
 import { ProductCard } from '@/components/modules/product/ProductCard';
 import { CustomFlashList } from '@/components/ui/CustomFlashList';
 import { EmptyState, ErrorState } from '@/components/ui/StateComponents';
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { useSavedProductstore } from '@/stores/savedProductsStore';
 import { Button } from '@/ui/Button';
 import { Typography } from '@/ui/Typography';

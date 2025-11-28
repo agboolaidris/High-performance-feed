@@ -15,7 +15,7 @@ import {
   LoadingState,
 } from '@/components/ui/StateComponents';
 import { TextField } from '@/components/ui/TextField';
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { useInfiniteProducts } from '@/hooks/useProducts';
 import { ProductsParams } from '@/types/product';
 import { CustomFlashList } from '@/ui/CustomFlashList';

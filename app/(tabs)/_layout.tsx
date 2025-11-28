@@ -9,7 +9,7 @@ import { HomeIcon } from '@/components/icons/Home';
 import { Badge } from '@/components/ui/Badge';
 import { CustomHeader } from '@/components/ui/CustomeHeader';
 import { Typography } from '@/components/ui/Typography';
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { useProductsCartStore } from '@/stores/cartProductsStore';
 
 export default function TabLayout() {

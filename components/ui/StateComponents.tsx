@@ -3,7 +3,7 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/ui/Button';
 import { Typography } from '@/components/ui/Typography';
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 
 // Base interface for all state components
 interface BaseStateProps {

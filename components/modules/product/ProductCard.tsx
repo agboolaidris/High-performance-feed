@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { RatingStars } from '@/components/ui/RatingStar';
-import { COLORS } from '@/constants/co';
+import { COLORS } from '@/constants/color';
 import { currencyFormat } from '@/lib/currencyFormat';
 import { Typography } from '@/ui/Typography';
 
