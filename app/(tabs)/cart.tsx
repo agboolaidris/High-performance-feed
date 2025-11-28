@@ -1,19 +1,19 @@
-import { Stack, useRouter } from 'expo-router';
-import React, { useCallback, useMemo } from 'react';
-import { View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { Stack, useRouter } from "expo-router";
+import React, { useCallback, useMemo } from "react";
+import { View, StyleSheet, TouchableOpacity, Alert } from "react-native";
 
-import { ArrowRightIcon } from '@/components/icons/ArrowRight';
-import { CartIcon } from '@/components/icons/Cart';
-import { TrashIcon } from '@/components/icons/Trash';
-import { CartItem } from '@/components/modules/cart/CartItem';
-import { EmptyState } from '@/components/ui/StateComponents';
-import { TextField } from '@/components/ui/TextField';
-import { CustomScrollView } from '@/components/ui/Wrapper';
-import { COLORS } from '@/constants/color';
-import { currencyFormat } from '@/lib/currencyFormat';
-import { useProductsCartStore } from '@/stores/cartProductsStore';
-import { Button } from '@/ui/Button';
-import { Typography } from '@/ui/Typography';
+import { ArrowRightIcon } from "@/components/icons/ArrowRight";
+import { CartIcon } from "@/components/icons/Cart";
+import { TrashIcon } from "@/components/icons/Trash";
+import { CartItem } from "@/components/modules/cart/CartItem";
+import { EmptyState } from "@/components/ui/StateComponents";
+import { TextField } from "@/components/ui/TextField";
+import { CustomScrollView } from "@/components/ui/Wrapper";
+import { COLORS } from "@/constants/color";
+import { currencyFormat } from "@/lib/currencyFormat";
+import { useProductsCartStore } from "@/stores/cartProductsStore";
+import { Button } from "@/ui/Button";
+import { Typography } from "@/ui/Typography";
 
 const CartScreen = () => {
   const router = useRouter();
@@ -36,25 +36,25 @@ const CartScreen = () => {
 
   const handleClearCart = () => {
     Alert.alert(
-      'Clear Cart',
-      'Are you sure you want to remove all items from your cart?',
+      "Clear Cart",
+      "Are you sure you want to remove all items from your cart?",
       [
-        { text: 'Cancel', style: 'cancel' },
+        { text: "Cancel", style: "cancel" },
         {
-          text: 'Clear',
-          style: 'destructive',
+          text: "Clear",
+          style: "destructive",
           onPress: clearCart,
         },
-      ],
+      ]
     );
   };
 
   const handleCheckout = useCallback(() => {
-    console.log('Checkout');
+    console.log("Checkout");
   }, []);
 
   const handleContinueShopping = useCallback(() => {
-    router.push('/');
+    router.push("/");
   }, [router]);
 
   // Get current cart count for header
@@ -259,14 +259,14 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   summaryRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   totalRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   divider: {
     height: 1,
@@ -277,20 +277,20 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: COLORS.white,
     marginTop: 8,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   promoTitle: {
     flex: 1,
   },
   checkoutBar: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 16,
     backgroundColor: COLORS.white,
     // borderTopWidth: 1,
@@ -302,9 +302,9 @@ const styles = StyleSheet.create({
   },
   checkoutButton: {
     flex: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     gap: 8,
   },
 });

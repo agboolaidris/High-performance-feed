@@ -1,79 +1,62 @@
-import { Stack, useRouter } from 'expo-router';
-import React, { useMemo, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { Stack, useRouter } from "expo-router";
+import React, { useMemo, useState } from "react";
+import { View, StyleSheet, TouchableOpacity, Alert } from "react-native";
 
-import { SearchIcon } from '@/components/icons/Search';
-import { ProductCard } from '@/components/modules/product/ProductCard';
-import { CustomFlashList } from '@/components/ui/CustomFlashList';
-import { EmptyState, ErrorState } from '@/components/ui/StateComponents';
-import { COLORS } from '@/constants/color';
-import { useSavedProductstore } from '@/stores/savedProductsStore';
-import { Button } from '@/ui/Button';
-import { Typography } from '@/ui/Typography';
+import { SearchIcon } from "@/components/icons/Search";
+import { ProductCard } from "@/components/modules/product/ProductCard";
+import { CustomFlashList } from "@/components/ui/CustomFlashList";
+import { EmptyState, ErrorState } from "@/components/ui/StateComponents";
+import { COLORS } from "@/constants/color";
+import { useSavedProductstore } from "@/stores/savedProductsStore";
+import { Button } from "@/ui/Button";
+import { Typography } from "@/ui/Typography";
 
 const FavouritesScreen = () => {
   const { push } = useRouter();
-  const { favorites, removeFromFavorites, clearFavorites } =
-    useSavedProductstore();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState<'recent' | 'name' | 'price'>('recent');
+  const { favorites, clearFavorites } = useSavedProductstore();
+
+  const [sortBy, setSortBy] = useState<"recent" | "name" | "price">("recent");
 
   // Filter and sort favorites
   const filteredFavorites = useMemo(() => {
     let filtered = favorites;
 
-    // Apply search filter
-    if (searchQuery.trim()) {
-      filtered = filtered.filter(
-        (fav) =>
-          fav.product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          fav.product.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          fav.product.category
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase()),
-      );
-    }
-
     // Apply sorting
     switch (sortBy) {
-      case 'recent':
+      case "recent":
         return filtered.sort(
           (a, b) =>
-            new Date(b.addedAt).getTime() - new Date(a.addedAt).getTime(),
+            new Date(b.addedAt).getTime() - new Date(a.addedAt).getTime()
         );
-      case 'name':
+      case "name":
         return filtered.sort((a, b) =>
-          a.product.title.localeCompare(b.product.title),
+          a.product.title.localeCompare(b.product.title)
         );
-      case 'price':
+      case "price":
         return filtered.sort((a, b) => a.product.price - b.product.price);
       default:
         return filtered;
     }
-  }, [favorites, searchQuery, sortBy]);
+  }, [favorites, sortBy]);
 
   const getFavoritesCount = useMemo(() => {
     return filteredFavorites.length;
   }, [filteredFavorites]);
 
-  const handleRemoveFavorite = (productId: number) => {
-    removeFromFavorites(productId);
-  };
-
   const handleClearAllFavorites = () => {
     if (favorites.length === 0) return;
 
     Alert.alert(
-      'Clear All Favorites',
-      'Are you sure you want to remove all items from your favorites?',
+      "Clear All Favorites",
+      "Are you sure you want to remove all items from your favorites?",
       [
-        { text: 'Cancel', style: 'cancel' },
+        { text: "Cancel", style: "cancel" },
         {
-          text: 'Clear All',
-          style: 'destructive',
+          text: "Clear All",
+          style: "destructive",
           onPress: clearFavorites,
         },
-      ],
+      ]
     );
   };
 
@@ -103,13 +86,13 @@ const FavouritesScreen = () => {
               <TouchableOpacity
                 style={[
                   styles.sortButton,
-                  sortBy === 'recent' && styles.sortButtonActive,
+                  sortBy === "recent" && styles.sortButtonActive,
                 ]}
-                onPress={() => setSortBy('recent')}
+                onPress={() => setSortBy("recent")}
               >
                 <Typography
                   variant="body3"
-                  color={sortBy === 'recent' ? COLORS.white : COLORS.black[600]}
+                  color={sortBy === "recent" ? COLORS.white : COLORS.black[600]}
                   font="medium"
                 >
                   Recent
@@ -118,13 +101,13 @@ const FavouritesScreen = () => {
               <TouchableOpacity
                 style={[
                   styles.sortButton,
-                  sortBy === 'name' && styles.sortButtonActive,
+                  sortBy === "name" && styles.sortButtonActive,
                 ]}
-                onPress={() => setSortBy('name')}
+                onPress={() => setSortBy("name")}
               >
                 <Typography
                   variant="body3"
-                  color={sortBy === 'name' ? COLORS.white : COLORS.black[600]}
+                  color={sortBy === "name" ? COLORS.white : COLORS.black[600]}
                   font="medium"
                 >
                   Name
@@ -133,13 +116,13 @@ const FavouritesScreen = () => {
               <TouchableOpacity
                 style={[
                   styles.sortButton,
-                  sortBy === 'price' && styles.sortButtonActive,
+                  sortBy === "price" && styles.sortButtonActive,
                 ]}
-                onPress={() => setSortBy('price')}
+                onPress={() => setSortBy("price")}
               >
                 <Typography
                   variant="body3"
-                  color={sortBy === 'price' ? COLORS.white : COLORS.black[600]}
+                  color={sortBy === "price" ? COLORS.white : COLORS.black[600]}
                   font="medium"
                 >
                   Price
@@ -177,14 +160,14 @@ const FavouritesScreen = () => {
                   Saved
                 </Typography>
                 <Typography variant="body2" color={COLORS.black[600]}>
-                  {getFavoritesCount}{' '}
-                  {getFavoritesCount === 1 ? 'item' : 'items'}
+                  {getFavoritesCount}{" "}
+                  {getFavoritesCount === 1 ? "item" : "items"}
                 </Typography>
               </View>
             );
           },
           headerTitleStyle: {
-            fontFamily: 'GeneralSans-Semibold',
+            fontFamily: "GeneralSans-Semibold",
             fontSize: 16,
             color: COLORS.black[900],
           },
@@ -197,7 +180,7 @@ const FavouritesScreen = () => {
             title="No Saved Products Found"
             message={`No saved products found. Try adding some products to your favorites.`}
             actionLabel="Add Products"
-            onAction={() => push('/')}
+            onAction={() => push("/")}
             icon={<SearchIcon size={64} color={COLORS.black[300]} />}
           />
         ) : (
@@ -236,21 +219,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   actionsSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginTop: 8,
   },
   sortSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 12,
   },
   sortLabel: {
     marginRight: 8,
   },
   sortButtons: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 8,
   },
   sortButton: {

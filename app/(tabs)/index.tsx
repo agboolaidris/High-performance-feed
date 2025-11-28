@@ -53,7 +53,7 @@ const Screen = () => {
   // Memoized callbacks
   const handleProductPress = useCallback(
     (productId: number) => {
-      push(`/product/${productId}`);
+      push(`/products/${productId}`);
     },
     [push]
   );
@@ -94,7 +94,7 @@ const Screen = () => {
     if (search.length > 0) {
       return (
         <AnimatedPressable onPress={handleClearSearch}>
-          <CloseIcon size={20} color={COLORS.black[400]} />
+          <CloseIcon size={15} color={COLORS.black[400]} />
         </AnimatedPressable>
       );
     }
@@ -295,8 +295,8 @@ const styles = StyleSheet.create({
   },
 
   productItem: {
-    paddingVertical: 8,
-    width: "50%", // More reliable than 100% with padding
+    paddingVertical: 16,
+    width: "100%", // More reliable than 100% with padding
   },
 
   // Footer
