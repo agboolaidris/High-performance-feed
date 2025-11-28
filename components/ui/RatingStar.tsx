@@ -1,10 +1,8 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from "react-native";
+import { COLORS } from "@/constants/color";
+import { Typography } from "./Typography";
 
-import { COLORS } from '@/constants/color';
-
-import { Typography } from './Typography';
-
-export type RatingSize = 'sm' | 'md' | 'lg';
+export type RatingSize = "sm" | "md" | "lg";
 
 interface RatingStarsProps {
   rating: number;
@@ -14,27 +12,28 @@ interface RatingStarsProps {
 
 export const RatingStars = ({
   rating,
-  size = 'md',
+  size = "md",
   showRatingText = true,
 }: RatingStarsProps) => {
-  const filledStars = Math.floor(rating);
-  const halfStar = rating % 1 >= 0.5;
+  // 1. Calculate the number of filled stars by rounding the rating to the nearest whole number.
+  const roundedRating = Math.round(rating);
+  const filledStars = Math.min(5, Math.max(0, roundedRating)); // Ensure it stays between 0 and 5
+  const emptyStars = 5 - filledStars;
 
-  // Size configuration
   const sizeConfig = {
     sm: {
-      starVariant: 'body3' as const,
-      textVariant: 'body3' as const,
+      starVariant: "body3" as const,
+      textVariant: "body3" as const,
       gap: 4,
     },
     md: {
-      starVariant: 'body2' as const,
-      textVariant: 'body2' as const,
+      starVariant: "body2" as const,
+      textVariant: "body2" as const,
       gap: 8,
     },
     lg: {
-      starVariant: 'body1' as const,
-      textVariant: 'body1' as const,
+      starVariant: "body1" as const,
+      textVariant: "body1" as const,
       gap: 8,
     },
   };
@@ -43,10 +42,14 @@ export const RatingStars = ({
 
   return (
     <View style={[styles.ratingStars, { gap: config.gap }]}>
-      <Typography variant={config.starVariant} color={COLORS.black[500]}>
-        {'★'.repeat(filledStars)}
-        {halfStar ? '½' : ''}
-        {'☆'.repeat(5 - filledStars - (halfStar ? 1 : 0))}
+      <Typography
+        variant={config.starVariant}
+        color={COLORS.black[500]}
+        style={styles.starsText}
+      >
+        {/* Render only full stars (★) and empty stars (☆) */}
+        {"★".repeat(filledStars)}
+        {"☆".repeat(emptyStars)}
       </Typography>
       {showRatingText && (
         <Typography
@@ -63,10 +66,15 @@ export const RatingStars = ({
 
 const styles = StyleSheet.create({
   ratingStars: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  // Ensure the star text is vertically aligned correctly
+  starsText: {
+    // This lineHeight is often necessary to prevent star icons from misaligning vertically
+    lineHeight: 20,
   },
   ratingText: {
-    // marginLeft is now handled by gap
+    // marginLeft is handled by gap on the parent View
   },
 });

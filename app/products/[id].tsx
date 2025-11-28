@@ -1,35 +1,36 @@
-import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useState, useEffect, useMemo } from 'react';
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   View,
   ScrollView,
   Image,
   StyleSheet,
   TouchableOpacity,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { CartIcon } from '@/components/icons/Cart';
-import { PackageIcon } from '@/components/icons/Pacakge';
-import { SearchIcon } from '@/components/icons/Search';
-import { ProductReviewCard } from '@/components/modules/product/ProductReviewCard';
-import { Badge } from '@/components/ui/Badge';
-import { CustomRefreshControl } from '@/components/ui/CustomRefreshControl';
+import { CartIcon } from "@/components/icons/Cart";
+import { PackageIcon } from "@/components/icons/Pacakge";
+import { SearchIcon } from "@/components/icons/Search";
+import { ProductReviewCard } from "@/components/modules/product/ProductReviewCard";
+import { Badge } from "@/components/ui/Badge";
+import { CustomRefreshControl } from "@/components/ui/CustomRefreshControl";
 import {
   EmptyState,
   ErrorState,
   LoadingState,
-} from '@/components/ui/StateComponents';
-import { COLORS } from '@/constants/color';
-import { useProduct } from '@/hooks/useProducts';
-import { HeartIcon } from '@/icons/Heart';
-import { currencyFormat } from '@/lib/currencyFormat';
-import { useProductsCartStore } from '@/stores/cartProductsStore';
-import { useSavedProductstore } from '@/stores/savedProductsStore';
-import { Button } from '@/ui/Button';
-import { RatingStars } from '@/ui/RatingStar';
-import { Typography } from '@/ui/Typography';
-import { CustomScrollView } from '@/ui/Wrapper';
+} from "@/components/ui/StateComponents";
+import { COLORS } from "@/constants/color";
+import { useProduct } from "@/hooks/useProducts";
+import { HeartIcon } from "@/icons/Heart";
+import { currencyFormat } from "@/lib/currencyFormat";
+import { useProductsCartStore } from "@/stores/cartProductsStore";
+import { useSavedProductstore } from "@/stores/savedProductsStore";
+import { Button } from "@/ui/Button";
+import { RatingStars } from "@/ui/RatingStar";
+import { Typography } from "@/ui/Typography";
+import { CustomScrollView } from "@/ui/Wrapper";
+import { CachedImage } from "@/components/ui/CachedImage";
 
 const ProductDetail = () => {
   const { push } = useRouter();
@@ -47,7 +48,7 @@ const ProductDetail = () => {
     refetch,
     error,
     isRefetching,
-  } = useProduct(id || '');
+  } = useProduct(id || "");
 
   // Check if product is already in cart and get current quantity
   const cartItem = items.find((item) => item.product.id === productData?.id);
@@ -164,7 +165,7 @@ const ProductDetail = () => {
         title="Product Unavailable"
         message="This product is currently not available for viewing. It might be out of stock, discontinued, or undergoing updates."
         actionLabel="Browse Products"
-        onAction={() => push('/')}
+        onAction={() => push("/")}
         icon={<PackageIcon size={64} color={COLORS.black[300]} />}
       />
     );
@@ -187,8 +188,8 @@ const ProductDetail = () => {
           },
           headerRight: () => (
             <TouchableOpacity
-              style={{ position: 'relative' }}
-              onPress={() => push('/cart')}
+              style={{ position: "relative" }}
+              onPress={() => push("/cart")}
             >
               <CartIcon size={28} />
               <Badge count={cartItemCount} />
@@ -206,7 +207,7 @@ const ProductDetail = () => {
         {/* Image Gallery with Favourite Button */}
         <View style={styles.imageSection}>
           <View style={styles.imageContainer}>
-            <Image
+            <CachedImage
               source={{ uri: currentImage }}
               style={styles.mainImage}
               resizeMode="contain"
@@ -237,7 +238,7 @@ const ProductDetail = () => {
                     selectedImageIndex === index && styles.selectedThumbnail,
                   ]}
                 >
-                  <Image
+                  <CachedImage
                     source={{ uri: image }}
                     style={styles.thumbnailImage}
                     resizeMode="cover"
@@ -378,8 +379,8 @@ const ProductDetail = () => {
                   color={COLORS.black[800]}
                   font="medium"
                 >
-                  {productData.dimensions.width} ×{' '}
-                  {productData.dimensions.height} ×{' '}
+                  {productData.dimensions.width} ×{" "}
+                  {productData.dimensions.height} ×{" "}
                   {productData.dimensions.depth} cm
                 </Typography>
               </View>
@@ -423,7 +424,7 @@ const ProductDetail = () => {
       </CustomScrollView>
 
       {/* Fixed Action Bar with SafeAreaView only for bottom */}
-      <SafeAreaView edges={['bottom']} style={styles.safeAreaBottom}>
+      <SafeAreaView edges={["bottom"]} style={styles.safeAreaBottom}>
         <View style={styles.actionBar}>
           {/* Quantity Selector - Show if product is in stock */}
           {productData.stock > 0 && (
@@ -509,30 +510,30 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   imageContainer: {
-    position: 'relative',
+    position: "relative",
   },
   mainImage: {
-    width: '100%',
+    width: "100%",
     height: 300,
   },
   favouriteButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 16,
     right: 16,
     width: 44,
     height: 44,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: COLORS.white,
     borderRadius: 22,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
   },
   thumbnailContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingHorizontal: 16,
     marginTop: 16,
   },
@@ -542,14 +543,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginRight: 8,
     borderWidth: 2,
-    borderColor: 'transparent',
+    borderColor: "transparent",
   },
   selectedThumbnail: {
     borderColor: COLORS.black[800],
   },
   thumbnailImage: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
     borderRadius: 6,
   },
   infoSection: {
@@ -560,12 +561,12 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   titleRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   brand: {
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
   },
   title: {
     marginBottom: 4,
@@ -574,12 +575,12 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   priceSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 12,
   },
   originalPrice: {
-    textDecorationLine: 'line-through',
+    textDecorationLine: "line-through",
   },
   discountBadge: {
     backgroundColor: COLORS.red,
@@ -588,8 +589,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   stockSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   descriptionSection: {
     gap: 8,
@@ -604,16 +605,16 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   featureItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   reviewsSection: {
     gap: 12,
   },
   actionBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 16,
     backgroundColor: COLORS.white,
     borderTopWidth: 1,
@@ -621,8 +622,8 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   quantitySelector: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: COLORS.black[100],
     borderRadius: 8,
     padding: 4,
@@ -631,13 +632,13 @@ const styles = StyleSheet.create({
   },
   quantityButton: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 6,
   },
   quantity: {
     width: 40,
-    textAlign: 'center',
+    textAlign: "center",
   },
   cartButton: {
     flex: 2,

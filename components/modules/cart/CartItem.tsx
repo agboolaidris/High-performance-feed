@@ -1,11 +1,12 @@
-import React from 'react';
-import { View, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import React from "react";
+import { View, Image, TouchableOpacity, StyleSheet, Alert } from "react-native";
 
-import { TrashIcon } from '@/components/icons/Trash';
-import { COLORS } from '@/constants/color';
-import { useProductsCartStore } from '@/stores/cartProductsStore';
-import { Product } from '@/types/product';
-import { Typography } from '@/ui/Typography';
+import { TrashIcon } from "@/components/icons/Trash";
+import { COLORS } from "@/constants/color";
+import { useProductsCartStore } from "@/stores/cartProductsStore";
+import { Product } from "@/types/product";
+import { Typography } from "@/ui/Typography";
+import { CachedImage } from "@/components/ui/CachedImage";
 
 interface CartItemProps {
   item: {
@@ -29,8 +30,8 @@ export const CartItem: React.FC<CartItemProps> = ({ item, isLast = false }) => {
   const handleIncrease = () => {
     if (item.quantity >= item.product.stock) {
       Alert.alert(
-        'Stock Limit',
-        `Only ${item.product.stock} items available in stock.`,
+        "Stock Limit",
+        `Only ${item.product.stock} items available in stock.`
       );
       return;
     }
@@ -44,11 +45,11 @@ export const CartItem: React.FC<CartItemProps> = ({ item, isLast = false }) => {
   };
 
   const handleRemove = () => {
-    Alert.alert('Remove Item', `Remove ${item.product.title} from cart?`, [
-      { text: 'Cancel', style: 'cancel' },
+    Alert.alert("Remove Item", `Remove ${item.product.title} from cart?`, [
+      { text: "Cancel", style: "cancel" },
       {
-        text: 'Remove',
-        style: 'destructive',
+        text: "Remove",
+        style: "destructive",
         onPress: () => removeItem(item.product.id),
       },
     ]);
@@ -57,7 +58,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item, isLast = false }) => {
   return (
     <View style={[styles.container, !isLast && styles.borderBottom]}>
       {/* Product Image */}
-      <Image
+      <CachedImage
         source={{ uri: item.product.thumbnail }}
         style={styles.image}
         resizeMode="cover"
@@ -160,7 +161,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item, isLast = false }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingVertical: 12,
     gap: 12,
   },
@@ -182,26 +183,26 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   brand: {
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
   },
   priceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
     marginTop: 4,
   },
   originalPrice: {
-    textDecorationLine: 'line-through',
+    textDecorationLine: "line-through",
   },
   controls: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginTop: 8,
   },
   quantitySelector: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: COLORS.black[100],
     borderRadius: 8,
     padding: 4,
@@ -209,19 +210,19 @@ const styles = StyleSheet.create({
   quantityButton: {
     width: 28,
     height: 28,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 6,
   },
   quantity: {
     width: 32,
-    textAlign: 'center',
+    textAlign: "center",
   },
   removeButton: {
     padding: 8,
   },
   total: {
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+    justifyContent: "center",
+    alignItems: "flex-end",
   },
 });

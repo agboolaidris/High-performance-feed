@@ -1,28 +1,28 @@
-import { QueryClientProvider } from '@tanstack/react-query';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
 
-import { CustomHeader } from '@/components/ui/CustomeHeader';
-import { COLORS } from '@/constants/color';
-import { queryClient } from '@/lib/queryClient';
-import 'react-native-reanimated';
+import { CustomHeader } from "@/ui/CustomeHeader";
+import { COLORS } from "@/constants/color";
+import { queryClient, persister } from "@/lib/queryClient";
+import "react-native-reanimated";
 
-export { ErrorBoundary } from 'expo-router';
+export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
-  initialRouteName: '(tabs)',
+  initialRouteName: "(tabs)",
 };
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded, error] = useFonts({
-    'GeneralSans-Regular': require('../assets/fonts/GeneralSans-Regular.otf'),
-    'GeneralSans-Medium': require('../assets/fonts/GeneralSans-Medium.otf'),
-    'GeneralSans-Semibold': require('../assets/fonts/GeneralSans-Semibold.otf'),
-    'GeneralSans-Bold': require('../assets/fonts/GeneralSans-Bold.otf'),
+    "GeneralSans-Regular": require("../assets/fonts/GeneralSans-Regular.otf"),
+    "GeneralSans-Medium": require("../assets/fonts/GeneralSans-Medium.otf"),
+    "GeneralSans-Semibold": require("../assets/fonts/GeneralSans-Semibold.otf"),
+    "GeneralSans-Bold": require("../assets/fonts/GeneralSans-Bold.otf"),
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
@@ -41,7 +41,18 @@ export default function RootLayout() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{
+        persister,
+        maxAge: 1000 * 60 * 60 * 24, // 24 hours
+        dehydrateOptions: {
+          shouldDehydrateQuery: (query) => {
+            return query.gcTime !== 0;
+          },
+        },
+      }}
+    >
       <Stack
         screenOptions={{
           keyboardHandlingEnabled: true,
@@ -51,9 +62,9 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="product" options={{ title: 'Product' }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="product" options={{ title: "Product" }} />
+        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
       </Stack>
-    </QueryClientProvider>
+    </PersistQueryClientProvider>
   );
 }

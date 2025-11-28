@@ -1,11 +1,12 @@
-import { useRouter } from 'expo-router';
-import React, { useMemo } from 'react';
-import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { useRouter } from "expo-router";
+import React, { useMemo } from "react";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 
-import { RatingStars } from '@/components/ui/RatingStar';
-import { COLORS } from '@/constants/color';
-import { currencyFormat } from '@/lib/currencyFormat';
-import { Typography } from '@/ui/Typography';
+import { RatingStars } from "@/components/ui/RatingStar";
+import { COLORS } from "@/constants/color";
+import { currencyFormat } from "@/lib/currencyFormat";
+import { Typography } from "@/ui/Typography";
+import { CachedImage } from "@/components/ui/CachedImage";
 
 interface Product {
   id: number;
@@ -65,7 +66,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Product Image with Badges */}
       <View style={styles.imageContainer}>
         {product.thumbnail ? (
-          <Image
+          <CachedImage
             source={{ uri: product.thumbnail }}
             style={styles.image}
             resizeMode="cover"
@@ -95,7 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           ]}
         >
           <Typography variant="body3" color={COLORS.white} font="semibold">
-            {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+            {product.stock > 0 ? "In Stock" : "Out of Stock"}
           </Typography>
         </View>
       </View>
@@ -161,25 +162,25 @@ const styles = StyleSheet.create({
     margin: 6,
   },
   imageContainer: {
-    width: '100%',
+    width: "100%",
     height: 149,
     backgroundColor: COLORS.black[100],
     borderRadius: 8,
-    overflow: 'hidden',
-    position: 'relative',
+    overflow: "hidden",
+    position: "relative",
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   placeholderImage: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: COLORS.black[200],
   },
   discountBadge: {
-    position: 'absolute',
+    position: "absolute",
     top: 8,
     left: 8,
     backgroundColor: COLORS.red,
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   stockBadge: {
-    position: 'absolute',
+    position: "absolute",
     top: 8,
     right: 8,
     paddingHorizontal: 6,
@@ -200,18 +201,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   brandText: {
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
   },
   titleText: {
     lineHeight: 14,
   },
 
   priceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 4,
   },
   originalPrice: {
-    textDecorationLine: 'line-through',
+    textDecorationLine: "line-through",
   },
 });
