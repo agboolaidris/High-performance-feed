@@ -58,13 +58,7 @@ This project was developed to showcase skills in:
    yarn install
    ```
 
-2. **Start the development server**
-
-   ```bash
-   yarn start
-   ```
-
-3. **Run on specific platforms**
+2. **Run on specific platforms**
 
    ```bash
    # Android
@@ -73,8 +67,6 @@ This project was developed to showcase skills in:
    # iOS
    yarn ios
 
-   # Web
-   yarn web
    ```
 
 ## 🎨 Design System
